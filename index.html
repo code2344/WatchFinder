@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchFinder - Find Your Perfect Watch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⌚ WatchFinder</h1>
+            <p class="tagline">Discover your perfect timepiece in 10 questions</p>
+        </header>
+
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <h2>Welcome to WatchFinder!</h2>
+                <p>Answer 10 questions and we'll recommend the top 3 watches perfectly suited to your needs and lifestyle.</p>
+                <p>Our database includes thousands of watches from premium smartwatches to classic analog timepieces.</p>
+                <button class="btn-primary" onclick="startQuiz()">Start Quiz</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div class="question-counter">
+                Question <span id="current-question">1</span> of 10
+            </div>
+            
+            <div id="question-container" class="question-container">
+                <h2 id="question-text" class="question-text"></h2>
+                <div id="options-container" class="options-container"></div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button id="prev-btn" class="btn-secondary" onclick="previousQuestion()" disabled>Previous</button>
+                <button id="next-btn" class="btn-primary" onclick="nextQuestion()" disabled>Next</button>
+            </div>
+        </div>
+
+        <div id="results-screen" class="screen">
+            <h2>Your Perfect Watch Matches</h2>
+            <p class="results-intro">Based on your preferences, here are your top 3 watch recommendations:</p>
+            <div id="results-container" class="results-container"></div>
+            <button class="btn-primary" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script src="watches-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
