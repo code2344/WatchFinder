@@ -1,6 +1,9 @@
 // WatchFinder Quiz Application
 // Main application logic for watch recommendation quiz
 
+// Currency conversion - USD to AUD (approximate rate: 1 USD = 1.52 AUD)
+const USD_TO_AUD = 1.52;
+
 // Quiz state
 let currentQuestionIndex = 0;
 let userAnswers = {};
@@ -11,10 +14,10 @@ const questions = [
         id: 'budget',
         question: 'What is your budget for a watch?',
         options: [
-            { value: 'budget', label: 'Under $300', range: [0, 300] },
-            { value: 'mid', label: '$300 - $1,000', range: [300, 1000] },
-            { value: 'premium', label: '$1,000 - $3,000', range: [1000, 3000] },
-            { value: 'luxury', label: 'Over $3,000', range: [3000, 999999] }
+            { value: 'budget', label: 'Under $450 AUD', range: [0, 300] },
+            { value: 'mid', label: '$450 - $1,500 AUD', range: [300, 1000] },
+            { value: 'premium', label: '$1,500 - $4,500 AUD', range: [1000, 3000] },
+            { value: 'luxury', label: 'Over $4,500 AUD', range: [3000, 999999] }
         ]
     },
     {
@@ -352,9 +355,29 @@ function calculateAndShowResults() {
         };
     });
     
-    // Sort by score and get top 3
+    // Sort by score and get top 3 unique base models
     matches.sort((a, b) => b.score - a.score);
-    const top3 = matches.slice(0, 3);
+    
+    // Filter to prevent duplicate base models (e.g., same watch in different colors)
+    const top3 = [];
+    const seenBaseModels = new Set();
+    
+    for (const match of matches) {
+        // Extract base model name by removing color/band variations
+        const baseModel = match.watch.model
+            .replace(/\s+(Black|Blue|Green|Silver|Gold|White|Red|Gray|Bronze)\s+with\s+.+$/i, '')
+            .replace(/\s+(Black|Blue|Green|Silver|Gold|White|Red|Gray|Bronze)$/i, '')
+            .trim();
+        
+        const modelKey = `${match.watch.brand}-${baseModel}`;
+        
+        if (!seenBaseModels.has(modelKey)) {
+            seenBaseModels.add(modelKey);
+            top3.push(match);
+            
+            if (top3.length === 3) break;
+        }
+    }
     
     // Display results
     displayResults(top3);
@@ -379,7 +402,7 @@ function displayResults(top3) {
                 <div class="watch-brand">${watch.brand}</div>
                 <div class="watch-model">${watch.model}</div>
             </div>
-            <div class="watch-price">$${watch.price.toLocaleString()}</div>
+            <div class="watch-price">A$${Math.round(watch.price * USD_TO_AUD).toLocaleString()}</div>
             <div class="match-score">${result.percentage}% Match</div>
             <div class="watch-description">${watch.description}</div>
             <div class="watch-details">
@@ -431,4 +454,6 @@ function restartQuiz() {
 // Log database info on load
 console.log(`WatchFinder loaded with ${allWatches.length} watches in database`);
 console.log('Brands:', [...new Set(allWatches.map(w => w.brand))].sort().join(', '));
-console.log('Price range: $' + Math.min(...allWatches.map(w => w.price)) + ' - $' + Math.max(...allWatches.map(w => w.price)));
+const minPriceAUD = Math.round(Math.min(...allWatches.map(w => w.price)) * USD_TO_AUD);
+const maxPriceAUD = Math.round(Math.max(...allWatches.map(w => w.price)) * USD_TO_AUD);
+console.log('Price range: A$' + minPriceAUD + ' - A$' + maxPriceAUD);

@@ -249,8 +249,12 @@ polarWatches.forEach(w => {
 // ===== SUUNTO WATCHES =====
 const suuntoWatches = [
     { model: "Vertical", price: 629, battery: 1440, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Solar Charging", "Offline Maps", "Barometer"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "Vertical Titanium Solar", price: 849, battery: 2160, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Solar Charging", "Offline Maps", "Barometer", "Titanium"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "Race", price: 449, battery: 336, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "AMOLED", "Offline Maps"], useCase: ["sport", "fitness"], waterResistance: "100m", display: "AMOLED" },
     { model: "9 Peak Pro", price: 569, battery: 504, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "Offline Maps", "Barometer"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "9 Peak", price: 489, battery: 504, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Offline Maps", "Barometer"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
     { model: "9 Baro", price: 449, battery: 336, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Barometer"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "9", price: 399, battery: 336, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
     { model: "7", price: 479, battery: 288, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "Wear OS", "Offline Maps"], useCase: ["sport", "daily"], waterResistance: "50m", display: "AMOLED" },
     { model: "5 Peak", price: 399, battery: 240, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Barometer"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
     { model: "5", price: 299, battery: 240, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "MIP" },
@@ -280,10 +284,15 @@ suuntoWatches.forEach(w => {
 // ===== COROS WATCHES =====
 const corosWatches = [
     { model: "Vertix 2", price: 699, battery: 1440, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "Dual-Frequency GPS", "Offline Maps", "Training Hub"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "Vertix 2S", price: 649, battery: 1200, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "Dual-Frequency GPS", "Offline Maps", "Training Hub"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "Vertix", price: 599, battery: 1440, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Sapphire Glass", "Titanium Bezel"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
     { model: "Apex 2 Pro", price: 499, battery: 840, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "Offline Maps", "Training Hub"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "MIP" },
     { model: "Apex 2", price: 399, battery: 528, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Heart Rate", "Training Hub"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "MIP" },
+    { model: "Apex Pro", price: 399, battery: 960, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Sapphire Glass"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "MIP" },
+    { model: "Apex", price: 299, battery: 720, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Ultra-Light"], useCase: ["sport", "fitness"], waterResistance: "100m", display: "MIP" },
     { model: "Pace 3", price: 229, battery: 576, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Nylon Band", "Ultra-Light"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "MIP" },
     { model: "Pace 2", price: 199, battery: 480, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Ultra-Light"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "MIP" },
+    { model: "Pace", price: 179, battery: 600, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "MIP" },
 ];
 
 corosWatches.forEach(w => {
@@ -1065,6 +1074,142 @@ withingsWatches.forEach(w => {
         waterResistance: w.waterResistance,
         display: w.display,
         description: `Withings ${w.model} - elegant hybrid smartwatch with medical-grade health features.`
+    });
+});
+
+// ===== WAHOO WATCHES =====
+const wahooWatches = [
+    { model: "ELEMNT RIVAL", price: 379, battery: 336, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Multi-Sport", "Touchless Transitions"], useCase: ["sport", "fitness"], waterResistance: "50m", display: "LCD" },
+    { model: "ELEMNT RIVAL Multisport", price: 379, battery: 336, type: "smart", connectivity: ["Bluetooth"], features: ["GPS", "Heart Rate", "Triathlon Mode"], useCase: ["sport", "outdoor"], waterResistance: "50m", display: "LCD" },
+];
+
+wahooWatches.forEach(w => {
+    watchDatabase.push({
+        id: watchId++,
+        brand: "Wahoo",
+        model: w.model,
+        type: w.type,
+        price: w.price,
+        priceRange: "mid",
+        batteryLife: Math.floor(w.battery / 24) + " days",
+        batteryDays: w.battery / 24,
+        connectivity: w.connectivity,
+        features: w.features,
+        useCase: w.useCase,
+        style: "sport",
+        waterResistance: w.waterResistance,
+        display: w.display,
+        description: `Wahoo ${w.model} - multisport GPS watch for triathletes and endurance athletes.`
+    });
+});
+
+// ===== CASIO PRO TREK (Outdoor/Hiking) =====
+const proTrekWatches = [
+    { model: "PRW-6900Y", price: 399, battery: 180, type: "analog", connectivity: [], features: ["Solar Powered", "Triple Sensor", "Altimeter", "Barometer", "Compass"], useCase: ["outdoor", "sport"], waterResistance: "200m", display: "Analog-Digital" },
+    { model: "PRW-6100Y", price: 449, battery: 180, type: "analog", connectivity: [], features: ["Solar Powered", "Triple Sensor", "Tough Movement", "Radio Controlled"], useCase: ["outdoor", "sport"], waterResistance: "200m", display: "Analog-Digital" },
+    { model: "PRG-340", price: 220, battery: 730, type: "analog", connectivity: [], features: ["Solar Powered", "Triple Sensor", "Altimeter", "Barometer"], useCase: ["outdoor", "sport"], waterResistance: "100m", display: "Digital" },
+    { model: "PRW-50Y", price: 229, battery: 180, type: "analog", connectivity: [], features: ["Solar Powered", "Altimeter", "Barometer", "Compass"], useCase: ["outdoor", "daily"], waterResistance: "100m", display: "Analog-Digital" },
+];
+
+proTrekWatches.forEach(w => {
+    watchDatabase.push({
+        id: watchId++,
+        brand: "Casio Pro Trek",
+        model: w.model,
+        type: w.type,
+        price: w.price,
+        priceRange: w.price > 300 ? "mid" : "budget",
+        batteryLife: w.features.includes("Solar") ? "6+ months (Solar)" : "2 years",
+        batteryDays: w.battery,
+        connectivity: w.connectivity,
+        features: w.features,
+        useCase: w.useCase,
+        style: "rugged",
+        waterResistance: w.waterResistance,
+        display: w.display,
+        description: `Casio Pro Trek ${w.model} - outdoor watch with triple sensor technology for hiking and adventure.`
+    });
+});
+
+// ===== NIXON (Surf/Action Sports) =====
+const nixonWatches = [
+    { model: "Mission", price: 399, battery: 48, type: "smart", connectivity: ["Bluetooth", "WiFi"], features: ["GPS", "Tide Tracking", "Surf Tracking", "Action Camera Integration"], useCase: ["sport", "outdoor"], waterResistance: "100m", display: "AMOLED" },
+    { model: "Regulus", price: 249, battery: 730, type: "analog", connectivity: [], features: ["Dual Time", "Countdown Timer", "Water Resistant"], useCase: ["sport", "daily"], waterResistance: "300m", display: "Digital" },
+    { model: "Heat", price: 179, battery: 730, type: "analog", connectivity: [], features: ["Tide Tracking", "Dual Time", "Water Resistant"], useCase: ["sport", "outdoor"], waterResistance: "100m", display: "Digital" },
+];
+
+nixonWatches.forEach(w => {
+    watchDatabase.push({
+        id: watchId++,
+        brand: "Nixon",
+        model: w.model,
+        type: w.type,
+        price: w.price,
+        priceRange: w.price > 300 ? "mid" : "budget",
+        batteryLife: w.type === "smart" ? "2 days" : "2 years",
+        batteryDays: w.battery / 24,
+        connectivity: w.connectivity,
+        features: w.features,
+        useCase: w.useCase,
+        style: "sport",
+        waterResistance: w.waterResistance,
+        display: w.display,
+        description: `Nixon ${w.model} - action sports watch designed for surf, skate, and adventure.`
+    });
+});
+
+// ===== LUMINOX (Military/Tactical) =====
+const luminoxWatches = [
+    { model: "Navy SEAL 3500", price: 595, battery: 730, type: "analog", connectivity: [], features: ["Swiss Quartz", "Self-Powered Illumination", "Carbon Case"], useCase: ["outdoor", "sport"], waterResistance: "200m", display: "Analog" },
+    { model: "Navy SEAL Chronograph 3580", price: 695, battery: 730, type: "analog", connectivity: [], features: ["Swiss Quartz", "Chronograph", "Self-Powered Illumination"], useCase: ["outdoor", "business"], waterResistance: "200m", display: "Analog" },
+    { model: "Bear Grylls Survival 3740", price: 425, battery: 730, type: "analog", connectivity: [], features: ["Swiss Quartz", "Compass Bezel", "Self-Powered Illumination"], useCase: ["outdoor", "sport"], waterResistance: "200m", display: "Analog" },
+    { model: "Land 0320", price: 395, battery: 730, type: "analog", connectivity: [], features: ["Swiss Quartz", "Date", "Self-Powered Illumination"], useCase: ["daily", "outdoor"], waterResistance: "200m", display: "Analog" },
+];
+
+luminoxWatches.forEach(w => {
+    watchDatabase.push({
+        id: watchId++,
+        brand: "Luminox",
+        model: w.model,
+        type: w.type,
+        price: w.price,
+        priceRange: "mid",
+        batteryLife: "2 years",
+        batteryDays: 730,
+        connectivity: w.connectivity,
+        features: w.features,
+        useCase: w.useCase,
+        style: "rugged",
+        waterResistance: w.waterResistance,
+        display: w.display,
+        description: `Luminox ${w.model} - Swiss tactical watch with always-visible self-powered illumination.`
+    });
+});
+
+// ===== MARATHON (Military) =====
+const marathonWatches = [
+    { model: "GSAR", price: 399, battery: 1825, type: "analog", connectivity: [], features: ["Swiss Quartz", "Tritium Tubes", "Sapphire Crystal"], useCase: ["outdoor", "sport"], waterResistance: "300m", display: "Analog" },
+    { model: "Navigator", price: 499, battery: 1825, type: "analog", connectivity: [], features: ["Swiss Quartz", "Tritium Tubes", "Date"], useCase: ["outdoor", "daily"], waterResistance: "200m", display: "Analog" },
+    { model: "TSAR", price: 499, battery: 1825, type: "analog", connectivity: [], features: ["Swiss Quartz", "Tritium Tubes", "36mm Case"], useCase: ["daily", "outdoor"], waterResistance: "300m", display: "Analog" },
+];
+
+marathonWatches.forEach(w => {
+    watchDatabase.push({
+        id: watchId++,
+        brand: "Marathon",
+        model: w.model,
+        type: w.type,
+        price: w.price,
+        priceRange: "mid",
+        batteryLife: "5 years",
+        batteryDays: 1825,
+        connectivity: w.connectivity,
+        features: w.features,
+        useCase: w.useCase,
+        style: "rugged",
+        waterResistance: w.waterResistance,
+        display: w.display,
+        description: `Marathon ${w.model} - Canadian military-spec watch with tritium illumination for maximum visibility.`
     });
 });
 
